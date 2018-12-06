@@ -1,0 +1,8 @@
+#navigation-example{
+    .dropdown-toggle::after{
+        display: none;
+    }
+    .dropdown-menu-right.show{
+        left: auto!important;
+    }
+}

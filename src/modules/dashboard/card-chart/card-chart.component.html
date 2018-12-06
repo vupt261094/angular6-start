@@ -1,0 +1,17 @@
+<div class="card card-chart">
+  <div class="card-header" [ngClass]="getCardClass(chart.status)">
+    <div class="ct-chart" id="dailySalesChart"></div>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">{{chart.title}}</h4>
+    <p class="card-category">
+      <span *ngIf="chart.percentage != 0"><span class="text-success"><i class="fa fa-long-arrow-up"></i> {{chart.percentage}}% </span> {{chart.description}}</span>
+      <span *ngIf="chart.percentage == 0"><p class="card-category">{{chart.description}}</p></span>
+    </p>
+  </div>
+  <div class="card-footer">
+    <div class="stats">
+      <i class="material-icons">access_time</i> {{chart.time}}
+    </div>
+  </div>
+</div>
