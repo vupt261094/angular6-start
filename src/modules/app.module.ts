@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppRouteModule } from './app.route';
 import { AppSettings } from '../constants/app-settings.constant';
 import { ServiceModule } from "../services/service.module";
+import { GuardModule } from '../guards/guard.module';
 // import { UserProfileComponent } from './user-profile/user-profile.component'
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ServiceModule } from "../services/service.module";
     SharedModule,
     AppRouteModule,
     ServiceModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    GuardModule.forRoot()
   ],
   providers: [AppSettings],
   bootstrap: [AppComponent]

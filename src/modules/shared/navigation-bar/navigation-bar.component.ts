@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { AppSettings } from '../../../constants/app-settings.constant'
+import { IAuthenticationService } from '../../../interfaces/authentication.interface';
+import { Router } from '@angular/router';
 // import { Router, ActivatedRoute} from '@angular/router';    
 @Component({
   selector: 'navigation-bar',
@@ -9,7 +11,7 @@ import { AppSettings } from '../../../constants/app-settings.constant'
 export class NavigationBarComponent implements OnInit {
   public title: string;
   // readonly states = AppSettings.
-  constructor(private appSettings: AppSettings) {}
+  constructor(private appSettings: AppSettings, @Inject("IAuthenticationService") private authenticationService: IAuthenticationService, private router: Router) {}
   
 
   ngOnInit() {
@@ -29,4 +31,9 @@ export class NavigationBarComponent implements OnInit {
     }
   }
 
+  //log out - remove token from localStorage
+  logOut(){
+    this.authenticationService.clearIdentity();
+    this.router.navigateByUrl("/login");
+  }
 }
