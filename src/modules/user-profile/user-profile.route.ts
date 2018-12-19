@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'prefix',
     component: AuthorizeLayoutComponent,
-    canActivate: [IsAuthorizedGuard],
+    // canActivate: [IsAuthorizedGuard],
     children: [
       {
         path: '',
