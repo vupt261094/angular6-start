@@ -23,7 +23,7 @@ export class UserProfileService implements IUserProfileService{
 
   updateProfile(user: User){
     const headers = new HttpHeaders().set("Content-Type", "application/json");
-    let apiURL = "http://5c03ec37d5f2070013d58094.mockapi.io/api/users1/" + user.userId;
+    let apiURL = "http://5c03ec37d5f2070013d58094.mockapi.io/api/users/" + user.userId;
     return this.httpClient.put(apiURL, user, {headers});
   }
 }
