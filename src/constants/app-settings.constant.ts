@@ -5,7 +5,12 @@ import { User } from "src/models/user";
 export class AppSettings {
     public states = {
         dashboard: 'dashboard',
-        user: 'user'
+        user: 'user',
+        product: {
+            list: 'product',
+            create: 'product/create',
+            edit: 'product/edit'
+        }
     }
     /*
     * Key in local storage to store authentication token.

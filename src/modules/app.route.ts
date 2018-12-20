@@ -14,6 +14,11 @@ export const routes: Routes = [
         pathMatch: 'full',
         redirectTo: '/dashboard'
       },
+      // {
+      //   path: '**',
+      //   pathMatch: 'full',
+      //   loadChildren: 'src/modules/not-found/not-found.module#NotFoundModule'
+      // },
       {
         path: 'login',
         loadChildren: 'src/modules/login/login.module#LoginModule'
@@ -27,6 +32,27 @@ export const routes: Routes = [
         path: 'user',
         loadChildren: 'src/modules/user-profile/user-profile.module#UserProfileModule',
         canActivate: [IsAuthorizedGuard]
+      },
+      {
+        path: 'product',
+        canActivate: [IsAuthorizedGuard],
+        children: [
+          {
+            path: '',
+            loadChildren: 'src/modules/product/manage-product/manage-product.module#ManageProductModule',
+            canActivate : [IsAuthorizedGuard]
+          },
+          {
+            path: 'create',
+            loadChildren: 'src/modules/product/add-product/add-product.module#AddProductModule',
+            canActivate : [IsAuthorizedGuard]
+          },
+          {
+            path: 'edit/:id',
+            loadChildren: 'src/modules/product/add-product/add-product.module#AddProductModule',
+            canActivate : [IsAuthorizedGuard]
+          }
+        ]
       },
     ]
   }

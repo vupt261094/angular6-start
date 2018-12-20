@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title ">Product List</h4>
+        <p class="card-category"> Here is list of products</p>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Name
+              </th>
+              <th>
+                Type
+              </th>
+              <th>
+                Price
+              </th>
+              <th></th>
+            </thead>
+            <tbody *ngFor="let product of productList">
+              <tr>
+                <td>
+                  {{product.name}}
+                </td>
+                <td>
+                  {{product.type}}
+                </td>
+                <td class="text-primary">
+                  ${{product.price}}
+                </td>
+                <td>
+                  <a href="" style="color: #8b92a9" [routerLink]="['edit', product.id]">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  &nbsp;&nbsp;
+                  <a href="" style="color: #8b92a9" (click)="deleteProduct(product.id)">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button claSs="btn btn-info text-right" routerLink="/{{appSetting.states.product.create}}">Add Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

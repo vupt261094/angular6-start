@@ -28,6 +28,9 @@ export class NavigationBarComponent implements OnInit {
       case this.appSettings.states.user:
           this.title = "User Profile";
           break;
+      case this.appSettings.states.product.list, this.appSettings.states.product.create, this.appSettings.states.product.edit:
+          this.title = "Product";
+          break;
     }
   }
 

@@ -12,6 +12,9 @@ import { ServiceModule } from "../services/service.module";
 import { GuardModule } from '../guards/guard.module';
 import { AuthInterceptor } from '../interceptors/authentication-http-interceptor';
 import { GlobalInterceptor } from '../interceptors/global-http-interceptor';
+import { ConfigUrl } from '../constants/config-url.constant';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 // import { UserProfileComponent } from './user-profile/user-profile.component'
 
 @NgModule({
@@ -23,10 +26,17 @@ import { GlobalInterceptor } from '../interceptors/global-http-interceptor';
     AppRouteModule,
     ServiceModule.forRoot(),
     HttpClientModule,
-    GuardModule.forRoot()
+    GuardModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    })
   ],
   providers: [
     AppSettings,
+    ConfigUrl,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
@@ -36,7 +46,8 @@ import { GlobalInterceptor } from '../interceptors/global-http-interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: GlobalInterceptor,
       multi: true
-    }
+    },
+    ToastrService
   ],
   bootstrap: [AppComponent]
 })

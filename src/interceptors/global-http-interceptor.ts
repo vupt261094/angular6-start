@@ -2,11 +2,12 @@ import { Injectable, Inject } from '@angular/core'
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs'
 import { tap, catchError } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class GlobalInterceptor implements HttpInterceptor {
     
-    constructor() {
+    constructor(private toastr: ToastrService) {
 
     }
 
@@ -25,7 +26,7 @@ export class GlobalInterceptor implements HttpInterceptor {
                     // server-side error
                     errorMessage = `Error Code: ${err.status}\nMessage: ${err.message}`;
                 }
-                alert(errorMessage);
+                this.toastr.error(errorMessage);
                 return throwError(errorMessage);
             })
         );
