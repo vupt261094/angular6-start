@@ -15,6 +15,7 @@ import { GlobalInterceptor } from '../interceptors/global-http-interceptor';
 import { ConfigUrl } from '../constants/config-url.constant';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ReactiveFormsModule } from '@angular/forms';
 // import { UserProfileComponent } from './user-profile/user-profile.component'
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     })
+    
   ],
   providers: [
     AppSettings,

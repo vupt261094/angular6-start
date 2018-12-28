@@ -23,11 +23,11 @@ export class ProductService implements IProductService{
         let apiURL = this.configUrl.urlAPI + "/product/" + id;
         return this.httpClient.get<Product>(apiURL);
     }
-    addProduct(product: Product) {
+    addProduct(product) {
         let apiURL = this.configUrl.urlAPI + "/product";
         return this.httpClient.post(apiURL, product);
     }
-    updateProduct(product: Product) {
+    updateProduct(product) {
         let apiURL = this.configUrl.urlAPI + "/product/" + product.id;
         return this.httpClient.put(apiURL, product);
     }

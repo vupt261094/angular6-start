@@ -8,5 +8,5 @@ export class User{
     address: string;
     city: string;
     country: string;
-    postalCodes: number;
+    postalCode: number;
 }

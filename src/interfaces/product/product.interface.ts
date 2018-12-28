@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 export interface IProductService{
     getListProduct();
     getDetail(id: string): Observable<Product>;
-    addProduct(product: Product);
-    updateProduct(product: Product);
+    addProduct(product);
+    updateProduct(product);
     deleteProduct(id: Product);
 }

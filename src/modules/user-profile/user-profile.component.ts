@@ -10,7 +10,7 @@ import { HttpHeaderResponse, HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  public model = {};
+  public model:User;
   constructor(@Inject("IUserProfileService") private userProfileService: IUserProfileService, public router: Router,) { 
     
   }

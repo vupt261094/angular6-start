@@ -6,12 +6,12 @@
         <p class="card-category">Add information about your product</p>
       </div>
       <div class="card-body">
-        <form #productForm="ngForm" (ngSubmit)="submit(product)"> 
+        <form novalidate [formGroup]="productForm" (ngSubmit)="submit()"> 
           <div class="row" *ngIf="isEditMode">
             <div class="col-md-5">
               <div class="form-group">
                 <label class="bmd-label-floating">ID (disabled)</label>
-                <input type="text" class="form-control" disabled [ngModel] = "product.id" name="id">
+                <input type="text" class="form-control" disabled formControlName="id">
               </div>
             </div>
             
@@ -22,16 +22,13 @@
                 <label class="bmd-label-floating">Product Name</label>
                 <input type="text" 
                 class="form-control" 
-                [(ngModel)] = "product.name" 
-                name="name"
-                #name="ngModel"
-                minlength="6"
-                required>
-                <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
-                  <div [hidden]="!name.errors.required">
+                formControlName="name"
+                >
+                <div *ngIf="productForm.controls['name'].errors && submitted" class="alert alert-danger">
+                  <div [hidden]="!productForm.controls['name'].errors.required">
                     Product name must be required !!!
                   </div>
-                  <div [hidden]="!name.errors.minlength">
+                  <div [hidden]="!productForm.controls['name'].errors.minlength">
                     Product name must be at least 6 characters !!!
                   </div>
                 </div>
@@ -42,7 +39,15 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="bmd-label-floating">Type</label>
-                <input type="text" class="form-control" [(ngModel)] = "product.type" name="type">
+                <input type="text" class="form-control" formControlName = "type">
+                <div *ngIf="productForm.controls['type'].errors && submitted" class="alert alert-danger">
+                  <div [hidden]="!productForm.controls['type'].errors.required">
+                    Product type must be required !!!
+                  </div>
+                  <div [hidden]="!productForm.controls['type'].errors.minlength">
+                    Product type must be at least 6 characters !!!
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -50,14 +55,49 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="bmd-label-floating">Price</label>
-                <input type="text" class="form-control" [(ngModel)] = "product.price" name="price">
+                <input type="text" 
+                class="form-control" 
+                formControlName = "price">
+                <div *ngIf="productForm.controls['price'].errors && submitted" class="alert alert-danger">
+                  <div [hidden]="!productForm.controls['price'].errors.required">
+                    Product price must be required !!!
+                  </div>
+                  <div [hidden]="!productForm.controls['price'].errors.pattern">
+                    Product price must be numeric !!!
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          <!-- Test custom structural directive -->
+          <!-- <div class="row">
+            <div class="col-sm">
+              <button class="btn btn-default" type="button" (click)="isShow = !isShow">Click {{!isShow}}</button>
+            </div>
+          </div>
+          <div class="row" *isShow = "isShow">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="bmd-label-floating">Test Directive</label>
+                <input type="text" 
+                class="form-control">
+              </div>
+            </div>
+          </div> -->
+
+          <input #phone placeholder="phone number">
+
+        <!-- lots of other elements -->
+
+        <!-- phone refers to the input element; pass its `value` to an event handler -->
+        <button (click)="callPhone(phone.value)">Call</button>
           <button type="submit" class="btn btn-primary pull-right"><span *ngIf="!isEditMode">Create</span><span *ngIf="isEditMode">Update</span></button>
           <div class="clearfix"></div>
         </form>
       </div>
     </div>
   </div>
+  <!-- <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+  </div> -->
 </div>
